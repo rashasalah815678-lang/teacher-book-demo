@@ -4,13 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>رحلة المعلمة المتقنة</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -26,15 +23,8 @@ header {
   padding: 20px 12px;
 }
 
-header h1 {
-  margin: 0 0 8px;
-  font-size: 25px;
-}
-
-header p {
-  margin: 0;
-  font-size: 14px;
-}
+header h1 { margin: 0 0 8px; font-size: 25px; }
+header p { margin: 0; font-size: 14px; }
 
 .book {
   max-width: 900px;
@@ -56,49 +46,26 @@ header p {
   border-radius: 8px 16px 16px 8px;
   min-height: 500px;
   padding: clamp(22px, 5vw, 55px);
-  box-shadow:
-    -8px 0 0 #e5dac2,
-    -10px 0 0 #c8b58d,
-    0 12px 30px #00000020;
+  box-shadow: -8px 0 0 #e5dac2, -10px 0 0 #c8b58d,
+              0 12px 30px #00000020;
   line-height: 2;
   transform-origin: right center;
   backface-visibility: hidden;
 }
 
-.page.active {
-  display: block;
-}
+.page.active { display: block; }
 
-.page.turn-next {
-  animation: turnNext 0.55s ease both;
-}
-
-.page.turn-prev {
-  animation: turnPrev 0.55s ease both;
-}
+.page.turn-next { animation: turnNext 0.4s ease both; }
+.page.turn-prev { animation: turnPrev 0.4s ease both; }
 
 @keyframes turnNext {
-  from {
-    opacity: 0.35;
-    transform: perspective(1400px) rotateY(-18deg);
-    box-shadow: -18px 0 25px #00000015;
-  }
-  to {
-    opacity: 1;
-    transform: perspective(1400px) rotateY(0);
-  }
+  from { opacity: .35; transform: perspective(1400px) rotateY(-18deg); }
+  to { opacity: 1; transform: perspective(1400px) rotateY(0); }
 }
 
 @keyframes turnPrev {
-  from {
-    opacity: 0.35;
-    transform: perspective(1400px) rotateY(18deg);
-    box-shadow: 18px 0 25px #00000015;
-  }
-  to {
-    opacity: 1;
-    transform: perspective(1400px) rotateY(0);
-  }
+  from { opacity: .35; transform: perspective(1400px) rotateY(18deg); }
+  to { opacity: 1; transform: perspective(1400px) rotateY(0); }
 }
 
 .cover {
@@ -112,38 +79,12 @@ header p {
   align-items: center;
 }
 
-.cover.active {
-  display: flex;
-}
+.cover.active { display: flex; }
+.cover h2 { color: #fff8e8; font-size: 34px; line-height: 1.7; }
 
-.cover h2 {
-  color: #fff8e8;
-  font-size: 34px;
-  line-height: 1.7;
-}
-
-.ornament {
-  font-size: 42px;
-  color: #e4c477;
-}
-
-h2, h3, h4 {
-  color: #174c3c;
-}
-
-.cover h2 {
-  color: #fff8e8;
-}
-
-.contents button {
-  display: block;
-  width: 100%;
-  text-align: right;
-  margin: 12px 0;
-  background: #f0eadb;
-  color: #174c3c;
-  border: 1px solid #d9c9a5;
-}
+.ornament { font-size: 42px; color: #e4c477; }
+h2, h3, h4 { color: #174c3c; }
+.cover h2 { color: #fff8e8; }
 
 button {
   cursor: pointer;
@@ -158,6 +99,16 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+.contents button {
+  display: block;
+  width: 100%;
+  text-align: right;
+  margin: 12px 0;
+  background: #f0eadb;
+  color: #174c3c;
+  border: 1px solid #d9c9a5;
+}
+
 .controls {
   display: flex;
   align-items: center;
@@ -166,21 +117,10 @@ button:focus-visible {
   margin-top: 18px;
 }
 
-.controls button {
-  background: #174c3c;
-  color: white;
-}
+.controls button { background: #174c3c; color: white; }
+.controls button:disabled { opacity: .4; cursor: not-allowed; }
 
-.controls button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-#counter {
-  text-align: center;
-  color: #5f6d61;
-  font-size: 14px;
-}
+#counter { text-align: center; color: #5f6d61; font-size: 14px; }
 
 .note {
   background: #f0eadb;
@@ -189,11 +129,13 @@ button:focus-visible {
   border-radius: 5px;
 }
 
-video {
-  display: block;
+.video-frame {
   width: 100%;
+  height: 400px;
+  border: 0;
   border-radius: 12px;
-  background: black;
+  background: #000;
+  display: block;
   margin: 15px 0;
 }
 
@@ -206,13 +148,8 @@ textarea {
   resize: vertical;
 }
 
-input[type="radio"] {
-  margin-left: 8px;
-}
-
-#result {
-  font-weight: bold;
-}
+input[type="radio"] { margin-left: 8px; }
+#result { font-weight: bold; }
 
 footer {
   text-align: center;
@@ -228,211 +165,121 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .book {
-    padding: 12px;
-    margin: 10px auto;
-  }
-
-  .book-frame {
-    min-height: 500px;
-  }
-
-  .page {
-    min-height: 480px;
-    padding: 23px 18px;
-  }
-
-  .cover h2 {
-    font-size: 28px;
-  }
-
-  .controls button {
-    padding: 10px;
-    font-size: 14px;
-  }
+  .book { padding: 12px; margin: 10px auto; }
+  .book-frame { min-height: 500px; }
+  .page { min-height: 480px; padding: 23px 18px; }
+  .cover h2 { font-size: 28px; }
+  .controls button { padding: 10px; font-size: 14px; }
+  .video-frame { height: 240px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page.turn-next,
-  .page.turn-prev {
-    animation-duration: 0.01ms;
-  }
+  .page.turn-next, .page.turn-prev { animation-duration: .01ms; }
 }
 </style>
 </head>
 
 <body>
-
 <header>
   <h1>مكتبة المعلمة المتقنة</h1>
   <p>رحلة تعليمية من الفهم إلى التطبيق</p>
 </header>
 
 <main class="book">
+<div class="book-frame" id="book">
 
-  <div class="book-frame" id="book">
+  <section class="page cover active" id="page0">
+    <div class="ornament">۞</div>
+    <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
+    <h2>رحلة المعلمة<br>المتقنة</h2>
+    <p>كتاب إلكتروني تفاعلي لتدريب معلمات القرآن الكريم</p>
+    <div class="ornament">❋</div>
+    <p>إعداد وإشراف: المعلمة رشا</p>
+  </section>
 
-    <!-- الغلاف -->
-    <section class="page cover active" id="page0">
-      <div class="ornament">۞</div>
-      <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
-      <h2>رحلة المعلمة<br>المتقنة</h2>
-      <p>كتاب إلكتروني تفاعلي لتدريب معلمات القرآن الكريم</p>
-      <div class="ornament">❋</div>
-      <p>إعداد وإشراف: المعلمة رشا</p>
-    </section>
+  <section class="page" id="page1">
+    <h2>مقدمة الكتاب</h2>
+    <p>أهلًا بكِ في رحلتكِ التعليمية، معلمتنا الفاضلة.</p>
+    <p>صُمّم هذا الكتاب ليساعدكِ على متابعة الدروس، وفهم المعلومات، ثم تحويلها إلى تطبيق عملي في تعليم القرآن الكريم.</p>
+    <div class="note">رحلتنا: شاهدي الدرس، افهمي الفكرة، طبّقي، ثم راجعي أداءكِ.</div>
+  </section>
 
-    <!-- المقدمة -->
-    <section class="page" id="page1">
-      <h2>مقدمة الكتاب</h2>
-      <p>أهلًا بكِ في رحلتكِ التعليمية، معلمتنا الفاضلة.</p>
-      <p>
-        صُمّم هذا الكتاب ليساعدكِ على متابعة الدروس،
-        وفهم المعلومات، ثم تحويلها إلى تطبيق عملي
-        في تعليم القرآن الكريم.
-      </p>
-      <div class="note">
-        رحلتنا: شاهدي الدرس، افهمي الفكرة، طبّقي،
-        ثم راجعي أداءكِ.
-      </div>
-    </section>
+  <section class="page contents" id="page2">
+    <h2>فهرس الكتاب</h2>
+    <p>اضغطي على الباب الذي تريدين قراءته:</p>
+    <button onclick="goTo(3)">الباب الأول: الدروس التعليمية</button>
+    <button onclick="goTo(4)">الباب الثاني: ملخص الدرس</button>
+    <button onclick="goTo(5)">الباب الثالث: اختبري فهمكِ</button>
+    <button onclick="goTo(6)">الباب الرابع: التطبيق العملي</button>
+  </section>
 
-    <!-- الفهرس -->
-    <section class="page contents" id="page2">
-      <h2>فهرس الكتاب</h2>
-      <p>اضغطي على الباب الذي تريدين قراءته:</p>
-      <button onclick="goTo(3)">الباب الأول: الدروس التعليمية</button>
-      <button onclick="goTo(4)">الباب الثاني: ملخص الدرس</button>
-      <button onclick="goTo(5)">الباب الثالث: اختبري فهمكِ</button>
-      <button onclick="goTo(6)">الباب الرابع: التطبيق العملي</button>
-    </section>
+  <section class="page" id="page3">
+    <h2>الباب الأول: الدروس التعليمية</h2>
+    <h3>الأحاديث النبوية الشريفة</h3>
+    <p>شاهدي شرح الشيخ، ثم سجّلي أهم الفوائد التي تعلمتِها.</p>
 
-    <!-- الفيديو -->
-    <section class="page" id="page3">
-      <h2>الباب الأول: الدروس التعليمية</h2>
+    <iframe
+      class="video-frame"
+      src="https://drive.google.com/file/d/1UbFrBXXgQacHFvu-jQDwhx7YYttvfKME/preview"
+      title="شرح الشيخ"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
 
-      <h3>الأحاديث النبوية الشريفة</h3>
+    <p class="note">لو لم يظهر الفيديو، تأكدي من أن إعداد مشاركة الملف في Google Drive هو «أي شخص لديه الرابط — مشاهد».</p>
 
-      <p>شاهدي شرح الشيخ، ثم سجّلي أهم الفوائد التي تعلمتِها.</p>
+    <h3>الفوائد المستفادة</h3>
+    <textarea id="benefits" rows="4" placeholder="اكتبي أهم فوائد الحديث..."></textarea>
 
-      <video controls playsinline preload="metadata">
-        <source src="videos/lesson1.mp4" type="video/mp4">
-        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
+    <h3>أسئلة بعد المشاهدة</h3>
+    <p>1. ما أهم فائدة تعلمتِها من الحديث؟</p>
+    <textarea id="question1" rows="3" placeholder="اكتبي إجابتك هنا..."></textarea>
 
-      <h3>الفوائد المستفادة</h3>
-      <textarea
-        id="benefits"
-        rows="4"
-        placeholder="اكتبي أهم فوائد الحديث..."
-      ></textarea>
+    <p>2. كيف ستشرحين هذه الفائدة لطالبة غير عربية؟</p>
+    <textarea id="question2" rows="3" placeholder="اكتبي طريقة الشرح..."></textarea>
 
-      <h3>أسئلة بعد المشاهدة</h3>
-      <p>1. ما أهم فائدة تعلمتِها من الحديث؟</p>
-      <textarea
-        id="question1"
-        rows="3"
-        placeholder="اكتبي إجابتك هنا..."
-      ></textarea>
+    <p class="note">ملاحظة: أضيفي عنوان الحديث ونصه الصحيح وملخص الشرح بعد تحديد الدرس الذي ستدرسينه.</p>
+  </section>
 
-      <p>2. كيف ستشرحين هذه الفائدة لطالبة غير عربية؟</p>
-      <textarea
-        id="question2"
-        rows="3"
-        placeholder="اكتبي طريقة الشرح..."
-      ></textarea>
+  <section class="page" id="page4">
+    <h2>الباب الثاني: ملخص الدرس</h2>
+    <p>الفكرة الرئيسية للدرس:</p>
+    <textarea id="summary1" rows="3" placeholder="اكتبي الفكرة الرئيسية..."></textarea>
+    <p>أهم المعلومات والقواعد:</p>
+    <textarea id="summary2" rows="4" placeholder="اكتبي أهم النقاط..."></textarea>
+    <p>الأخطاء التي ينبغي الانتباه إليها:</p>
+    <textarea id="summary3" rows="3" placeholder="اكتبي الأخطاء الشائعة..."></textarea>
+    <div class="note">استخدمي هذه الصفحة للمراجعة بعد مشاهدة شرح الشيخ.</div>
+  </section>
 
-      <p class="note">
-        ملاحظة: أضيفي عنوان الحديث ونصه الصحيح وملخص الشرح
-        بعد تحديد الدرس الذي ستدرسينه.
-      </p>
-    </section>
+  <section class="page" id="page5">
+    <h2>الباب الثالث: اختبري فهمكِ</h2>
+    <p>ما الخطوة التي تأتي بعد مشاهدة الدرس وفهمه؟</p>
+    <label><input type="radio" name="quiz" value="a"> الانتقال إلى درس آخر مباشرة.</label><br>
+    <label><input type="radio" name="quiz" value="b"> تطبيق ما تعلمتِه ومراجعة أدائكِ.</label><br>
+    <label><input type="radio" name="quiz" value="c"> الاكتفاء بمشاهدة الفيديو.</label>
+    <p><button onclick="checkAnswer()">تحققي من الإجابة</button></p>
+    <p id="result" aria-live="polite"></p>
+  </section>
 
-    <!-- الملخص -->
-    <section class="page" id="page4">
-      <h2>الباب الثاني: ملخص الدرس</h2>
+  <section class="page" id="page6">
+    <h2>الباب الرابع: التطبيق العملي</h2>
+    <p>ما التطبيق الذي ستنفذينه بعد دراسة الدرس؟</p>
+    <textarea id="task" rows="6" placeholder="اكتبي خطة تطبيقكِ هنا..."></textarea>
+    <p><button onclick="saveTask()">حفظ التطبيق</button></p>
+    <p id="saveMessage" aria-live="polite"></p>
+    <div class="note">الحفظ يتم في المتصفح على هذا الجهاز، ولا يرسل إجاباتكِ إلى أي جهة أخرى.</div>
+  </section>
 
-      <p>الفكرة الرئيسية للدرس:</p>
-      <textarea rows="3" placeholder="اكتبي الفكرة الرئيسية..."></textarea>
+</div>
 
-      <p>أهم المعلومات والقواعد:</p>
-      <textarea rows="4" placeholder="اكتبي أهم النقاط..."></textarea>
+<div class="controls">
+  <button id="prevBtn" onclick="move(-1)">السابق ←</button>
+  <span id="counter">الغلاف</span>
+  <button id="nextBtn" onclick="move(1)">التالي →</button>
+</div>
 
-      <p>الأخطاء التي ينبغي الانتباه إليها:</p>
-      <textarea rows="3" placeholder="اكتبي الأخطاء الشائعة..."></textarea>
-
-      <div class="note">
-        استخدمي هذه الصفحة للمراجعة بعد مشاهدة شرح الشيخ.
-      </div>
-    </section>
-
-    <!-- الاختبار -->
-    <section class="page" id="page5">
-      <h2>الباب الثالث: اختبري فهمكِ</h2>
-
-      <p>ما الخطوة التي تأتي بعد مشاهدة الدرس وفهمه؟</p>
-
-      <label>
-        <input type="radio" name="quiz" value="a">
-        الانتقال إلى درس آخر مباشرة.
-      </label>
-      <br>
-
-      <label>
-        <input type="radio" name="quiz" value="b">
-        تطبيق ما تعلمتِه ومراجعة أدائكِ.
-      </label>
-      <br>
-
-      <label>
-        <input type="radio" name="quiz" value="c">
-        الاكتفاء بمشاهدة الفيديو.
-      </label>
-
-      <p>
-        <button onclick="checkAnswer()">تحققي من الإجابة</button>
-      </p>
-
-      <p id="result" aria-live="polite"></p>
-    </section>
-
-    <!-- التطبيق -->
-    <section class="page" id="page6">
-      <h2>الباب الرابع: التطبيق العملي</h2>
-
-      <p>ما التطبيق الذي ستنفذينه بعد دراسة الدرس؟</p>
-
-      <textarea
-        id="task"
-        rows="6"
-        placeholder="اكتبي خطة تطبيقكِ هنا..."
-      ></textarea>
-
-      <p>
-        <button onclick="saveTask()">حفظ التطبيق</button>
-      </p>
-
-      <p id="saveMessage" aria-live="polite"></p>
-
-      <div class="note">
-        الحفظ يتم في المتصفح على هذا الجهاز، ولا يرسل إجاباتكِ
-        إلى أي جهة أخرى.
-      </div>
-    </section>
-
-  </div>
-
-  <!-- أزرار التنقل -->
-  <div class="controls">
-    <button id="prevBtn" onclick="move(-1)">السابق ←</button>
-    <span id="counter">الغلاف</span>
-    <button id="nextBtn" onclick="move(1)">التالي →</button>
-  </div>
-
-  <p class="hint">
-    يمكنكِ استخدام الأزرار أو السحب يمينًا ويسارًا لتغيير الصفحة.
-  </p>
-
+<p class="hint">يمكنكِ استخدام الأزرار أو السحب يمينًا ويسارًا لتغيير الصفحة.</p>
 </main>
 
 <footer>رحلة المعلمة المتقنة</footer>
@@ -444,7 +291,6 @@ const book = document.getElementById("book");
 
 function showPage(n, direction = 1) {
   const next = Math.max(0, Math.min(total - 1, n));
-
   if (next === current) return;
 
   const oldPage = document.getElementById("page" + current);
@@ -452,17 +298,14 @@ function showPage(n, direction = 1) {
 
   oldPage.classList.remove("active", "turn-next", "turn-prev");
   newPage.classList.remove("turn-next", "turn-prev");
-  newPage.classList.add("active");
-  newPage.classList.add(direction > 0 ? "turn-next" : "turn-prev");
+  newPage.classList.add("active", direction > 0 ? "turn-next" : "turn-prev");
 
   current = next;
-
   document.getElementById("counter").textContent =
     current === 0 ? "الغلاف" : "صفحة " + current + " من " + (total - 1);
 
   document.getElementById("prevBtn").disabled = current === 0;
   document.getElementById("nextBtn").disabled = current === total - 1;
-
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -506,14 +349,9 @@ function saveTask() {
 
 try {
   const savedTask = localStorage.getItem("teacherBookTask");
-  if (savedTask) {
-    document.getElementById("task").value = savedTask;
-  }
-} catch (error) {
-  // يظل الكتاب قابلًا للاستخدام حتى لو لم يتوفر الحفظ.
-}
+  if (savedTask) document.getElementById("task").value = savedTask;
+} catch (error) {}
 
-// دعم السحب بالماوس أو اللمس
 let startX = 0;
 let startY = 0;
 
@@ -525,26 +363,13 @@ book.addEventListener("pointerdown", function(event) {
 book.addEventListener("pointerup", function(event) {
   const dx = event.clientX - startX;
   const dy = event.clientY - startY;
-
-  if (Math.abs(dx) < 65 || Math.abs(dx) < Math.abs(dy)) {
-    return;
-  }
-
-  // في الكتاب العربي: السحب لليسار ينتقل للصفحة التالية.
-  if (dx < 0) {
-    move(1);
-  } else {
-    move(-1);
-  }
+  if (Math.abs(dx) < 65 || Math.abs(dx) < Math.abs(dy)) return;
+  if (dx < 0) move(1);
+  else move(-1);
 });
 
-showInitialPage();
-
-function showInitialPage() {
-  document.getElementById("prevBtn").disabled = true;
-  document.getElementById("nextBtn").disabled = false;
-}
+document.getElementById("prevBtn").disabled = true;
+document.getElementById("nextBtn").disabled = false;
 </script>
-
 </body>
 </html>
