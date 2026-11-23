@@ -1,375 +1,788 @@
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>رحلة المعلمة المتقنة</title>
+<title>The Proficient Quran Teacher's Journey</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: #e9e4d8;
-  color: #243b32;
+:root {
+  --green:#174b3b;
+  --gold:#c6a45b;
+  --cream:#faf7ef;
+  --ink:#26372f;
+  --muted:#718078;
+  --line:#e5dece;
 }
-
-header {
-  background: #174c3c;
-  color: white;
-  text-align: center;
-  padding: 20px 12px;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#e9e7df;
+  color:var(--ink);
+  font-family:Georgia,serif;
 }
-
-header h1 { margin: 0 0 8px; font-size: 25px; }
-header p { margin: 0; font-size: 14px; }
-
-.book {
-  max-width: 900px;
-  margin: 25px auto;
-  padding: 20px;
-  perspective: 1800px;
+header{
+  background:var(--green);
+  color:white;
+  text-align:center;
+  padding:17px;
+  font:12px Arial;
+  letter-spacing:2px;
 }
-
-.book-frame {
-  position: relative;
-  min-height: 540px;
-  transform-style: preserve-3d;
+.book{
+  max-width:920px;
+  min-height:690px;
+  margin:30px auto;
+  background:var(--cream);
+  box-shadow:0 12px 40px #0002;
+  position:relative;
+  border:1px solid #ddd5c5;
 }
-
-.page {
-  display: none;
-  background: #fffdf6;
-  border: 1px solid #d9c9a5;
-  border-radius: 8px 16px 16px 8px;
-  min-height: 500px;
-  padding: clamp(22px, 5vw, 55px);
-  box-shadow: -8px 0 0 #e5dac2, -10px 0 0 #c8b58d,
-              0 12px 30px #00000020;
-  line-height: 2;
-  transform-origin: right center;
-  backface-visibility: hidden;
+.page{
+  display:none;
+  min-height:690px;
+  padding:65px 9% 100px;
 }
-
-.page.active { display: block; }
-
-.page.turn-next { animation: turnNext 0.4s ease both; }
-.page.turn-prev { animation: turnPrev 0.4s ease both; }
-
-@keyframes turnNext {
-  from { opacity: .35; transform: perspective(1400px) rotateY(-18deg); }
-  to { opacity: 1; transform: perspective(1400px) rotateY(0); }
+.page.active{display:block}
+.cover{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  background:linear-gradient(145deg,#27634c,#10372b);
+  border:12px solid #174b3b;
+  outline:1px solid var(--gold);
+  outline-offset:-20px;
 }
-
-@keyframes turnPrev {
-  from { opacity: .35; transform: perspective(1400px) rotateY(18deg); }
-  to { opacity: 1; transform: perspective(1400px) rotateY(0); }
+.cover h1{
+  font-size:clamp(32px,5vw,48px);
+  font-weight:normal;
+  line-height:1.3;
 }
-
-.cover {
-  text-align: center;
-  background: #174c3c;
-  color: #fff8e8;
-  border: 7px double #c8a85e;
-  min-height: 500px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.cover p{
+  color:#e9d9b6;
+  font:14px Arial;
+  line-height:2;
 }
-
-.cover.active { display: flex; }
-.cover h2 { color: #fff8e8; font-size: 34px; line-height: 1.7; }
-
-.ornament { font-size: 42px; color: #e4c477; }
-h2, h3, h4 { color: #174c3c; }
-.cover h2 { color: #fff8e8; }
-
-button {
-  cursor: pointer;
-  border: 0;
-  border-radius: 8px;
-  padding: 12px 18px;
-  font: inherit;
+.ornament{color:var(--gold);font-size:38px}
+.eyebrow{
+  color:#a0803e;
+  font:12px Arial;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
-
-button:focus-visible {
-  outline: 3px solid #c8a85e;
-  outline-offset: 3px;
+h2{
+  color:var(--green);
+  font-size:32px;
+  font-weight:normal;
 }
-
-.contents button {
-  display: block;
-  width: 100%;
-  text-align: right;
-  margin: 12px 0;
-  background: #f0eadb;
-  color: #174c3c;
-  border: 1px solid #d9c9a5;
+h3{
+  color:var(--green);
+  font-size:21px;
+  font-weight:normal;
+  margin-top:28px;
 }
-
-.controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 18px;
+p,li{font-size:17px;line-height:1.85}
+.lead{font-size:19px;color:#56675e}
+.callout{
+  background:#f0eadb;
+  border-left:4px solid var(--gold);
+  padding:18px;
+  margin:22px 0;
+  line-height:1.8;
 }
-
-.controls button { background: #174c3c; color: white; }
-.controls button:disabled { opacity: .4; cursor: not-allowed; }
-
-#counter { text-align: center; color: #5f6d61; font-size: 14px; }
-
-.note {
-  background: #f0eadb;
-  border-right: 4px solid #c8a85e;
-  padding: 12px;
-  border-radius: 5px;
+.chapter{
+  display:block;
+  width:100%;
+  background:white;
+  border:1px solid var(--line);
+  padding:18px;
+  margin:12px 0;
+  text-align:left;
+  cursor:pointer;
 }
-
-.video-frame {
-  width: 100%;
-  height: 400px;
-  border: 0;
-  border-radius: 12px;
-  background: #000;
-  display: block;
-  margin: 15px 0;
+.chapter:hover{border-color:var(--gold)}
+.chapter strong{
+  display:block;
+  color:var(--green);
+  font-size:18px;
+  margin-bottom:6px;
 }
-
-textarea {
-  width: 100%;
-  padding: 12px;
-  font: inherit;
-  border: 1px solid #d9c9a5;
-  border-radius: 8px;
-  resize: vertical;
+.chapter span{
+  font:13px Arial;
+  color:var(--muted);
 }
-
-input[type="radio"] { margin-left: 8px; }
-#result { font-weight: bold; }
-
-footer {
-  text-align: center;
-  padding: 15px;
-  color: #526257;
+.audio{
+  width:100%;
+  height:120px;
+  border:1px solid var(--line);
+  margin:18px 0;
 }
-
-.hint {
-  text-align: center;
-  color: #526257;
-  font-size: 13px;
-  margin-top: 12px;
+textarea{
+  width:100%;
+  min-height:110px;
+  padding:14px;
+  border:1px solid #d9d1c0;
+  background:white;
+  font:15px Arial;
+  resize:vertical;
 }
-
-@media (max-width: 600px) {
-  .book { padding: 12px; margin: 10px auto; }
-  .book-frame { min-height: 500px; }
-  .page { min-height: 480px; padding: 23px 18px; }
-  .cover h2 { font-size: 28px; }
-  .controls button { padding: 10px; font-size: 14px; }
-  .video-frame { height: 240px; }
+input[type="text"],input[type="url"]{
+  font:15px Arial;
+  border:1px solid #d9d1c0;
+  background:white;
+  padding:12px;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .page.turn-next, .page.turn-prev { animation-duration: .01ms; }
+.question{
+  background:white;
+  border:1px solid var(--line);
+  padding:18px;
+  margin:16px 0;
+}
+.question p{font-weight:bold}
+.option{
+  display:block;
+  margin:10px 0;
+  font:15px Arial;
+  cursor:pointer;
+}
+.option input{accent-color:var(--green)}
+.feedback{font:14px Arial;margin-top:10px}
+.action{
+  background:var(--green);
+  color:white;
+  border:0;
+  padding:12px 20px;
+  cursor:pointer;
+  margin:10px 5px 10px 0;
+}
+.secondary{
+  background:transparent;
+  color:var(--green);
+  border:1px solid var(--green);
+}
+.progress label{
+  display:block;
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+  line-height:1.6;
+}
+.progress input{accent-color:var(--green)}
+.navigation{
+  max-width:920px;
+  margin:-18px auto 35px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 10px;
+  font:14px Arial;
+}
+.navigation button{
+  background:var(--green);
+  color:white;
+  border:0;
+  padding:12px 20px;
+  cursor:pointer;
+}
+.navigation button:disabled{opacity:.35;cursor:not-allowed}
+#pageCount{color:var(--muted)}
+.submit-area{
+  margin-top:30px;
+  padding:20px;
+  background:#f0eadb;
+  border:1px solid var(--line);
+  text-align:center;
+}
+.submit-button{
+  background:#174b3b;
+  color:white;
+  border:0;
+  padding:15px 28px;
+  font:bold 15px Arial;
+  cursor:pointer;
+  margin-top:12px;
+}
+.submit-button:disabled{opacity:.5;cursor:wait}
+#submitStatus{
+  font:14px Arial;
+  line-height:1.7;
+  margin-top:14px;
+}
+@media(max-width:600px){
+  .book{margin:10px}
+  .page{padding:40px 24px 90px}
+  .cover h1{font-size:32px}
+  h2{font-size:27px}
+  .navigation{margin:0 8px 25px}
 }
 </style>
 </head>
 
 <body>
-<header>
-  <h1>مكتبة المعلمة المتقنة</h1>
-  <p>رحلة تعليمية من الفهم إلى التطبيق</p>
-</header>
+
+<header>SHEIKH NOUR EL-DIN ACADEMY</header>
 
 <main class="book">
-<div class="book-frame" id="book">
 
-  <section class="page cover active" id="page0">
-    <div class="ornament">۞</div>
-    <p>بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
-    <h2>رحلة المعلمة<br>المتقنة</h2>
-    <p>كتاب إلكتروني تفاعلي لتدريب معلمات القرآن الكريم</p>
-    <div class="ornament">❋</div>
-    <p>إعداد وإشراف: المعلمة رشا</p>
-  </section>
+<!-- PAGE 1 -->
+<section class="page cover active">
+  <div class="ornament">✧ ۞ ✧</div>
+  <p>A GUIDED LEARNING EXPERIENCE</p>
+  <h1>The Proficient<br>Quran Teacher's Journey</h1>
+  <div style="width:100px;border-top:1px solid #c6a45b;margin:20px"></div>
+  <p>
+    An Interactive Training Book<br>
+    Sheikh Nour El-Din Academy<br><br>
+    Prepared by Rasha
+  </p>
+</section>
 
-  <section class="page" id="page1">
-    <h2>مقدمة الكتاب</h2>
-    <p>أهلًا بكِ في رحلتكِ التعليمية، معلمتنا الفاضلة.</p>
-    <p>صُمّم هذا الكتاب ليساعدكِ على متابعة الدروس، وفهم المعلومات، ثم تحويلها إلى تطبيق عملي في تعليم القرآن الكريم.</p>
-    <div class="note">رحلتنا: شاهدي الدرس، افهمي الفكرة، طبّقي، ثم راجعي أداءكِ.</div>
-  </section>
+<!-- PAGE 2 -->
+<section class="page">
+  <div class="eyebrow">Opening page</div>
+  <h2>Welcome, Teacher</h2>
 
-  <section class="page contents" id="page2">
-    <h2>فهرس الكتاب</h2>
-    <p>اضغطي على الباب الذي تريدين قراءته:</p>
-    <button onclick="goTo(3)">الباب الأول: الدروس التعليمية</button>
-    <button onclick="goTo(4)">الباب الثاني: ملخص الدرس</button>
-    <button onclick="goTo(5)">الباب الثالث: اختبري فهمكِ</button>
-    <button onclick="goTo(6)">الباب الرابع: التطبيق العملي</button>
-  </section>
+  <div class="callout">
+    <strong>Teacher Information</strong>
+    <p>Your Full Name</p>
+    <input type="text" id="teacherName" class="saved"
+      placeholder="Enter your full name"
+      style="width:100%" required>
 
-  <section class="page" id="page3">
-    <h2>الباب الأول: الدروس التعليمية</h2>
-    <h3>الأحاديث النبوية الشريفة</h3>
-    <p>شاهدي شرح الشيخ، ثم سجّلي أهم الفوائد التي تعلمتِها.</p>
+    <p>Training Batch</p>
+    <input type="text" id="batch" class="saved"
+      placeholder="Enter your batch"
+      style="width:100%" required>
+  </div>
 
-    <iframe
-      class="video-frame"
-      src="https://drive.google.com/file/d/1UbFrBXXgQacHFvu-jQDwhx7YYttvfKME/preview"
-      title="شرح الشيخ"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+  <p class="lead">
+    Your journey as a Quran teacher is built through learning,
+    reflection, practice, and continuous improvement.
+  </p>
+  <p>
+    This book accompanies you throughout your training.
+    Listen to the Sheikh's lessons, record your notes,
+    review important concepts, and practise applying what you learn.
+  </p>
+  <div class="callout">
+    <strong>How to use this book</strong><br>
+    Read each chapter, listen carefully, answer the questions,
+    and complete the practical activities.
+  </div>
+  <h3>Your learning promise</h3>
+  <p>
+    Take your time. Strong foundations, patience, and care
+    for the learner are essential qualities of a Quran teacher.
+  </p>
+</section>
 
-    <p class="note">لو لم يظهر الفيديو، تأكدي من أن إعداد مشاركة الملف في Google Drive هو «أي شخص لديه الرابط — مشاهد».</p>
+<!-- PAGE 3 -->
+<section class="page">
+  <div class="eyebrow">Your reading map</div>
+  <h2>Table of Contents</h2>
+  <p class="lead">Choose a chapter to begin.</p>
 
-    <h3>الفوائد المستفادة</h3>
-    <textarea id="benefits" rows="4" placeholder="اكتبي أهم فوائد الحديث..."></textarea>
+  <button class="chapter" onclick="goTo(3)">
+    <strong>01 · The Sheikh's Lesson</strong>
+    <span>Listen to the recording and write your notes.</span>
+  </button>
 
-    <h3>أسئلة بعد المشاهدة</h3>
-    <p>1. ما أهم فائدة تعلمتِها من الحديث؟</p>
-    <textarea id="question1" rows="3" placeholder="اكتبي إجابتك هنا..."></textarea>
+  <button class="chapter" onclick="goTo(4)">
+    <strong>02 · Understanding the Foundations</strong>
+    <span>Review the essential learning points.</span>
+  </button>
 
-    <p>2. كيف ستشرحين هذه الفائدة لطالبة غير عربية؟</p>
-    <textarea id="question2" rows="3" placeholder="اكتبي طريقة الشرح..."></textarea>
+  <button class="chapter" onclick="goTo(5)">
+    <strong>03 · Check Your Understanding</strong>
+    <span>Interactive questions with instant feedback.</span>
+  </button>
 
-    <p class="note">ملاحظة: أضيفي عنوان الحديث ونصه الصحيح وملخص الشرح بعد تحديد الدرس الذي ستدرسينه.</p>
-  </section>
+  <button class="chapter" onclick="goTo(6)">
+    <strong>04 · From Knowledge to Practice</strong>
+    <span>Apply the lesson to a teaching situation.</span>
+  </button>
 
-  <section class="page" id="page4">
-    <h2>الباب الثاني: ملخص الدرس</h2>
-    <p>الفكرة الرئيسية للدرس:</p>
-    <textarea id="summary1" rows="3" placeholder="اكتبي الفكرة الرئيسية..."></textarea>
-    <p>أهم المعلومات والقواعد:</p>
-    <textarea id="summary2" rows="4" placeholder="اكتبي أهم النقاط..."></textarea>
-    <p>الأخطاء التي ينبغي الانتباه إليها:</p>
-    <textarea id="summary3" rows="3" placeholder="اكتبي الأخطاء الشائعة..."></textarea>
-    <div class="note">استخدمي هذه الصفحة للمراجعة بعد مشاهدة شرح الشيخ.</div>
-  </section>
+  <button class="chapter" onclick="goTo(7)">
+    <strong>05 · Reflection and Progress</strong>
+    <span>Review your learning journey.</span>
+  </button>
+</section>
 
-  <section class="page" id="page5">
-    <h2>الباب الثالث: اختبري فهمكِ</h2>
-    <p>ما الخطوة التي تأتي بعد مشاهدة الدرس وفهمه؟</p>
-    <label><input type="radio" name="quiz" value="a"> الانتقال إلى درس آخر مباشرة.</label><br>
-    <label><input type="radio" name="quiz" value="b"> تطبيق ما تعلمتِه ومراجعة أدائكِ.</label><br>
-    <label><input type="radio" name="quiz" value="c"> الاكتفاء بمشاهدة الفيديو.</label>
-    <p><button onclick="checkAnswer()">تحققي من الإجابة</button></p>
-    <p id="result" aria-live="polite"></p>
-  </section>
+<!-- PAGE 4 -->
+<section class="page">
+  <div class="eyebrow">Chapter 01 · Listen and learn</div>
+  <h2>The Sheikh's Lesson</h2>
+  <p class="lead">
+    Listen carefully to the original lesson.
+    Write down the important points and your questions.
+  </p>
 
-  <section class="page" id="page6">
-    <h2>الباب الرابع: التطبيق العملي</h2>
-    <p>ما التطبيق الذي ستنفذينه بعد دراسة الدرس؟</p>
-    <textarea id="task" rows="6" placeholder="اكتبي خطة تطبيقكِ هنا..."></textarea>
-    <p><button onclick="saveTask()">حفظ التطبيق</button></p>
-    <p id="saveMessage" aria-live="polite"></p>
-    <div class="note">الحفظ يتم في المتصفح على هذا الجهاز، ولا يرسل إجاباتكِ إلى أي جهة أخرى.</div>
-  </section>
+  <h3>Lesson Recording · Al-Qira'iyyah</h3>
 
-</div>
+  <iframe
+    class="audio"
+    src="https://drive.google.com/file/d/1WVbwa2u37ZNK657_5yW2Yd_JOhrZoc3f/preview"
+    allow="autoplay"
+    title="Sheikh lesson recording">
+  </iframe>
 
-<div class="controls">
-  <button id="prevBtn" onclick="move(-1)">السابق ←</button>
-  <span id="counter">الغلاف</span>
-  <button id="nextBtn" onclick="move(1)">التالي →</button>
-</div>
+  <h3>While listening</h3>
+  <ul>
+    <li>What is the main idea of the lesson?</li>
+    <li>Which teaching mistake should we avoid?</li>
+    <li>What can you apply with your students?</li>
+  </ul>
 
-<p class="hint">يمكنكِ استخدام الأزرار أو السحب يمينًا ويسارًا لتغيير الصفحة.</p>
+  <h3>My lesson notes</h3>
+  <textarea id="lessonNotes" class="saved"
+    placeholder="Write your notes here..."></textarea>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page">
+  <div class="eyebrow">Chapter 02 · Build understanding</div>
+  <h2>Understanding the Foundations</h2>
+  <p class="lead">
+    Al-Qira'iyyah is a foundation for correct Quran recitation.
+  </p>
+
+  <h3>Key learning points</h3>
+  <ol>
+    <li>
+      <strong>Meaning of Al-Qira'iyyah:</strong>
+      enabling the learner to read what they see fluently.
+      Understanding the meaning is not the main objective at this stage.
+    </li>
+    <li>
+      <strong>Build the basics:</strong>
+      focus on letters, short vowels, Shaddah, Tanween, and Sukoon.
+    </li>
+    <li>
+      <strong>Do not rush:</strong>
+      weak foundations can affect later Tajweed and accurate recitation.
+    </li>
+    <li>
+      <strong>Observe the learner:</strong>
+      identify what the student can read independently
+      and what needs guided practice.
+    </li>
+  </ol>
+
+  <div class="callout">
+    <strong>Remember</strong><br>
+    Strong foundations are not a delay in learning.
+    They make later learning stable.
+  </div>
+
+  <h3>Teacher's reflection</h3>
+  <p>Which reading skill do your students find most difficult?</p>
+  <textarea id="foundationNotes" class="saved"
+    placeholder="Write your reflection..."></textarea>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page">
+  <div class="eyebrow">Chapter 03 · Knowledge check</div>
+  <h2>Check Your Understanding</h2>
+  <p class="lead">
+    Choose the best answer, then check your results.
+  </p>
+
+  <div class="question" data-answer="b">
+    <p>1. What is the main goal of Al-Qira'iyyah?</p>
+    <label class="option"><input type="radio" name="q1" value="a"> Memorising meanings.</label>
+    <label class="option"><input type="radio" name="q1" value="b"> Reading what the learner sees fluently.</label>
+    <label class="option"><input type="radio" name="q1" value="c"> Studying advanced Tajweed first.</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-answer="c">
+    <p>2. Which set includes important reading foundations?</p>
+    <label class="option"><input type="radio" name="q2" value="a"> Translation and memorisation only.</label>
+    <label class="option"><input type="radio" name="q2" value="b"> Fast reading only.</label>
+    <label class="option"><input type="radio" name="q2" value="c"> Letters, short vowels, Shaddah, Tanween, and Sukoon.</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-answer="a">
+    <p>3. What should a teacher do if foundations are weak?</p>
+    <label class="option"><input type="radio" name="q3" value="a"> Strengthen the foundations patiently.</label>
+    <label class="option"><input type="radio" name="q3" value="b"> Move quickly to advanced lessons.</label>
+    <label class="option"><input type="radio" name="q3" value="c"> Ignore repeated mistakes.</label>
+    <div class="feedback"></div>
+  </div>
+
+  <button class="action" onclick="checkQuiz()">Check my answers</button>
+  <button class="action secondary" onclick="resetQuiz()">Try again</button>
+  <p id="quizResult" class="feedback"></p>
+</section>
+
+<!-- PAGE 7 -->
+<section class="page">
+  <div class="eyebrow">Chapter 04 · Teaching application</div>
+  <h2>From Knowledge to Practice</h2>
+
+  <p class="lead">
+    Apply what you have learned to a real teaching situation.
+  </p>
+
+  <div class="callout">
+    A new non-Arabic-speaking student recognises many Arabic letters,
+    but reads slowly and makes repeated mistakes with short vowels and Sukoon.
+  </div>
+
+  <h3>Your task</h3>
+  <ol>
+    <li>What would you check before starting the lesson?</li>
+    <li>Which one skill would you practise first? Why?</li>
+    <li>Write one encouraging sentence for the student.</li>
+  </ol>
+
+  <h3>Your teaching plan</h3>
+  <textarea id="practiceNotes" class="saved"
+    placeholder="My first step would be..."></textarea>
+
+  <h3>Practical Audio Assignment</h3>
+  <p>
+    Record a short audio (2–3 minutes) explaining how you would
+    teach the learner in the situation above.
+  </p>
+
+  <div class="callout">
+    <strong>Recording instructions</strong><br>
+    1. Introduce the lesson objective.<br>
+    2. Explain the skill you would teach first.<br>
+    3. Give an example as if you were teaching a student.<br>
+    4. End with an encouraging sentence.
+  </div>
+
+  <label for="audioLink"><strong>Paste your Google Drive audio link here:</strong></label>
+  <input
+    type="url"
+    id="audioLink"
+    class="saved"
+    placeholder="Paste your recording link"
+    style="width:100%;margin-top:10px"
+  >
+
+  <p class="feedback">
+    Make sure the Drive sharing permission is set to
+    "Anyone with the link – Viewer".
+  </p>
+
+  <h3>Self-check</h3>
+  <div class="progress">
+    <label><input type="checkbox" class="savedCheck" id="check1">
+      I identified the learner's difficulty.</label>
+    <label><input type="checkbox" class="savedCheck" id="check2">
+      I chose one clear learning objective.</label>
+    <label><input type="checkbox" class="savedCheck" id="check3">
+      I planned guided practice and feedback.</label>
+  </div>
+</section>
+
+<!-- PAGE 8 -->
+<section class="page">
+  <div class="eyebrow">Chapter 05 · Review your journey</div>
+  <h2>Reflection and Progress</h2>
+
+  <p class="lead">
+    Honest reflection helps you decide what to revisit
+    and what to practise next.
+  </p>
+
+  <h3>My reflection</h3>
+  <p>What is one idea I will apply in my next lesson?</p>
+  <textarea id="reflectionNotes" class="saved"
+    placeholder="I will apply this by..."></textarea>
+
+  <h3>Learning progress</h3>
+  <div class="progress">
+    <label><input type="checkbox" class="savedCheck" id="done1">
+      I listened to the Sheikh's lesson.</label>
+    <label><input type="checkbox" class="savedCheck" id="done2">
+      I reviewed the key learning points.</label>
+    <label><input type="checkbox" class="savedCheck" id="done3">
+      I completed the knowledge check.</label>
+    <label><input type="checkbox" class="savedCheck" id="done4">
+      I completed the practical task.</label>
+    <label><input type="checkbox" class="savedCheck" id="done5">
+      I wrote my reflection.</label>
+  </div>
+
+  <div class="callout">
+    <strong>Next step</strong><br>
+    Revisit any point that is still unclear.
+    Each new Sheikh lesson can become a new chapter
+    with its own recording, summary, questions, and activity.
+  </div>
+
+  <p id="saveStatus" class="feedback">
+    Your notes are saved on this device.
+  </p>
+
+  <div class="submit-area">
+    <h3>Submit Your Work</h3>
+    <p>
+      Review your answers and audio link before submitting.
+      Your latest submission will update your record.
+    </p>
+    <button type="button" class="submit-button"
+      id="submitBtn" onclick="submitWork()">
+      Submit My Work
+    </button>
+    <p id="submitStatus" role="status"></p>
+  </div>
+</section>
+
 </main>
 
-<footer>رحلة المعلمة المتقنة</footer>
+<div class="navigation">
+  <button id="prevBtn" onclick="move(-1)">← Previous</button>
+  <span id="pageCount">1 / 8</span>
+  <button id="nextBtn" onclick="move(1)">Next →</button>
+</div>
+
+<iframe name="submissionFrame" id="submissionFrame"
+  style="display:none"></iframe>
+
+<form id="submissionForm"
+  method="POST"
+  target="submissionFrame"
+  action="https://script.google.com/macros/s/AKfycbwb05LgSngx6PDIoVq6hKfMwRjlHBMjO2lPE815TUiWKFPjQ2LKgOUcVFHZv9iojeW_5w/exec"
+  style="display:none">
+  <textarea name="payload" id="payloadField"></textarea>
+</form>
 
 <script>
-let current = 0;
-const total = 7;
-const book = document.getElementById("book");
+/* PAGE NAVIGATION */
+const pages = document.querySelectorAll(".page");
+let currentPage = 0;
 
-function showPage(n, direction = 1) {
-  const next = Math.max(0, Math.min(total - 1, n));
-  if (next === current) return;
+function showPage(index) {
+  if (index < 0 || index >= pages.length) return;
 
-  const oldPage = document.getElementById("page" + current);
-  const newPage = document.getElementById("page" + next);
+  pages.forEach((page, i) => {
+    page.classList.toggle("active", i === index);
+  });
 
-  oldPage.classList.remove("active", "turn-next", "turn-prev");
-  newPage.classList.remove("turn-next", "turn-prev");
-  newPage.classList.add("active", direction > 0 ? "turn-next" : "turn-prev");
+  currentPage = index;
 
-  current = next;
-  document.getElementById("counter").textContent =
-    current === 0 ? "الغلاف" : "صفحة " + current + " من " + (total - 1);
+  document.getElementById("pageCount").textContent =
+    (index + 1) + " / " + pages.length;
 
-  document.getElementById("prevBtn").disabled = current === 0;
-  document.getElementById("nextBtn").disabled = current === total - 1;
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("prevBtn").disabled = index === 0;
+  document.getElementById("nextBtn").disabled =
+    index === pages.length - 1;
+
+  window.scrollTo({top:0, behavior:"smooth"});
 }
 
 function move(direction) {
-  showPage(current + direction, direction);
+  showPage(currentPage + direction);
 }
 
-function goTo(n) {
-  showPage(n, n > current ? 1 : -1);
+function goTo(index) {
+  showPage(index);
 }
 
-function checkAnswer() {
-  const answer = document.querySelector('input[name="quiz"]:checked');
-  const result = document.getElementById("result");
+/* QUIZ */
+let quizScore = "";
 
-  if (!answer) {
-    result.textContent = "اختاري إجابة أولًا.";
-  } else if (answer.value === "b") {
-    result.textContent = "أحسنتِ! الإجابة صحيحة.";
+function checkQuiz() {
+  let score = 0;
+  let answered = 0;
+
+  document.querySelectorAll(".question").forEach(question => {
+    const selected = question.querySelector("input:checked");
+    const feedback = question.querySelector(".feedback");
+
+    if (!selected) {
+      feedback.textContent = "Please choose an answer.";
+      feedback.style.color = "#a35b42";
+      return;
+    }
+
+    answered++;
+
+    if (selected.value === question.dataset.answer) {
+      score++;
+      feedback.textContent = "Correct! Well done.";
+      feedback.style.color = "#23634d";
+    } else {
+      feedback.textContent = "Not quite. Review the lesson and try again.";
+      feedback.style.color = "#a35b42";
+    }
+  });
+
+  if (answered === 3) {
+    quizScore = score;
+    document.getElementById("quizResult").textContent =
+      "Your score: " + score + " out of 3";
   } else {
-    result.textContent = "حاولي مرة أخرى. فكري في أهمية التطبيق.";
+    quizScore = "";
+    document.getElementById("quizResult").textContent =
+      "Please answer all questions.";
   }
 }
 
-function saveTask() {
-  const task = document.getElementById("task").value.trim();
-  const message = document.getElementById("saveMessage");
+function resetQuiz() {
+  document.querySelectorAll(".question input").forEach(input => {
+    input.checked = false;
+  });
 
-  if (!task) {
-    message.textContent = "اكتبي تطبيقكِ أولًا.";
+  document.querySelectorAll(".question .feedback").forEach(feedback => {
+    feedback.textContent = "";
+  });
+
+  document.getElementById("quizResult").textContent = "";
+  quizScore = "";
+}
+
+/* SAVE NOTES AND CHECKBOXES */
+const storageKey = "teacherJourneyBookData";
+
+function saveData(element) {
+  const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+  if (element.type === "checkbox") {
+    saved[element.id] = element.checked;
+  } else {
+    saved[element.id] = element.value;
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(saved));
+
+  const status = document.getElementById("saveStatus");
+  if (status) status.textContent = "Saved on this device ✓";
+}
+
+function loadData() {
+  const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+  document.querySelectorAll(".saved, .savedCheck").forEach(element => {
+    if (Object.prototype.hasOwnProperty.call(saved, element.id)) {
+      if (element.type === "checkbox") {
+        element.checked = saved[element.id];
+      } else {
+        element.value = saved[element.id];
+      }
+    }
+
+    element.addEventListener(
+      element.type === "checkbox" ? "change" : "input",
+      () => saveData(element)
+    );
+  });
+}
+
+/* COLLECT AND SUBMIT WORK */
+function getAnswer(name) {
+  const selected = document.querySelector(
+    'input[name="' + name + '"]:checked'
+  );
+  return selected ? selected.value : "";
+}
+
+function getChecked(id) {
+  return document.getElementById(id).checked;
+}
+
+function submitWork() {
+  const teacherName =
+    document.getElementById("teacherName").value.trim();
+  const batch =
+    document.getElementById("batch").value.trim();
+
+  if (!teacherName || !batch) {
+    alert("Please enter your name and training batch on the Welcome page.");
+    showPage(1);
     return;
   }
 
-  try {
-    localStorage.setItem("teacherBookTask", task);
-    message.textContent = "تم حفظ التطبيق على هذا الجهاز.";
-  } catch (error) {
-    message.textContent = "تعذّر الحفظ في المتصفح.";
+  const audioLink =
+    document.getElementById("audioLink").value.trim();
+
+  if (audioLink && !/^https:\/\/drive\.google\.com\//i.test(audioLink)) {
+    alert("Please enter a valid Google Drive sharing link.");
+    showPage(6);
+    return;
   }
+
+  const data = {
+    teacherName: teacherName,
+    batch: batch,
+    lessonNotes: document.getElementById("lessonNotes").value,
+    foundationNotes: document.getElementById("foundationNotes").value,
+    q1: getAnswer("q1"),
+    q2: getAnswer("q2"),
+    q3: getAnswer("q3"),
+    quizScore: quizScore,
+    practiceNotes: document.getElementById("practiceNotes").value,
+    check1: getChecked("check1"),
+    check2: getChecked("check2"),
+    check3: getChecked("check3"),
+    reflectionNotes: document.getElementById("reflectionNotes").value,
+    done1: getChecked("done1"),
+    done2: getChecked("done2"),
+    done3: getChecked("done3"),
+    done4: getChecked("done4"),
+    done5: getChecked("done5"),
+    audioLink: audioLink
+  };
+
+  const button = document.getElementById("submitBtn");
+  const status = document.getElementById("submitStatus");
+
+  if (!confirm("Are you sure you want to submit your work?")) {
+    return;
+  }
+
+  document.getElementById("payloadField").value =
+    JSON.stringify(data);
+
+  button.disabled = true;
+  button.textContent = "Submitting...";
+  status.textContent = "Your submission is being sent. Please wait...";
+
+  const form = document.getElementById("submissionForm");
+  const frame = document.getElementById("submissionFrame");
+
+  let handled = false;
+
+  function onFrameLoad() {
+    if (handled) return;
+    handled = true;
+
+    status.textContent =
+      "The submission request was sent. Please check the progress sheet to confirm it was received.";
+
+    button.disabled = false;
+    button.textContent = "Submit My Work";
+
+    frame.removeEventListener("load", onFrameLoad);
+  }
+
+  frame.addEventListener("load", onFrameLoad);
+
+  form.submit();
+
+  setTimeout(function() {
+    if (!handled) {
+      status.textContent =
+        "The request was sent. Please check the progress sheet before submitting again.";
+      button.disabled = false;
+      button.textContent = "Submit My Work";
+    }
+  }, 10000);
 }
 
-try {
-  const savedTask = localStorage.getItem("teacherBookTask");
-  if (savedTask) document.getElementById("task").value = savedTask;
-} catch (error) {}
-
-let startX = 0;
-let startY = 0;
-
-book.addEventListener("pointerdown", function(event) {
-  startX = event.clientX;
-  startY = event.clientY;
-});
-
-book.addEventListener("pointerup", function(event) {
-  const dx = event.clientX - startX;
-  const dy = event.clientY - startY;
-  if (Math.abs(dx) < 65 || Math.abs(dx) < Math.abs(dy)) return;
-  if (dx < 0) move(1);
-  else move(-1);
-});
-
-document.getElementById("prevBtn").disabled = true;
-document.getElementById("nextBtn").disabled = false;
+loadData();
+showPage(0);
 </script>
+
 </body>
 </html>
